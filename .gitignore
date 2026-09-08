@@ -24,6 +24,3 @@ Desktop.ini
 .ruff_cache/
 .pytest_cache/
 
-# Hatchling vcs
-gsecars/_version.py
-
