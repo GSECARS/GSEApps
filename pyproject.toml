@@ -1,0 +1,80 @@
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "gseapps"
+dynamic = ["version"]
+authors = [ {name = "Christofanis Skordas", email = "skordasc@uchicago.edu"} ]
+maintainers = [ {name = "Christofanis Skordas", email = "skordasc@uchicago.edu"} ]
+description = "Command-line interface and suite for GSECARS scientfic applications."
+readme = {file = "README.md", content-type = "text/markdown"}
+license = "MIT"
+license-files = ["LICENSE.txt"]
+classifiers = [
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Utilities",
+]
+requires-python = "==3.14.*"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "ruff>=0.16.6",
+]
+
+[project.scripts]
+gseapps = "gseapps:main"
+
+[project.entry-points."gseapps.commands"]
+# app registration placeholder
+
+[project.urls]
+Homepage = "https://github.com/gsecars/gseapps"
+Issues = "https://github.com/gsecars/gseapps/issues"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["gseapps"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.ruff]
+exclude = [
+    ".eggs",
+    ".git",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+    "build",
+    "dist",
+]
+line-length = 160
+indent-width = 4
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
