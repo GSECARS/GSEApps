@@ -5,7 +5,7 @@ name = "gseapps"
 dynamic = ["version"]
 authors = [ {name = "Christofanis Skordas", email = "skordasc@uchicago.edu"} ]
 maintainers = [ {name = "Christofanis Skordas", email = "skordasc@uchicago.edu"} ]
-description = "Command-line interface and suite for GSECARS scientfic applications."
+description = "Command-line interface and suite for GSECARS scientific applications."
 readme = {file = "README.md", content-type = "text/markdown"}
 license = "MIT"
 license-files = ["LICENSE.txt"]
