@@ -3,10 +3,11 @@
 from argparse import ArgumentParser
 from importlib.metadata import EntryPoint, entry_points, version
 
-__all__ = ["cmd_list", "make_parser"]
+__all__ = ["cmd_list", "cmd_make", "make_parser"]
 
 
 COMMAND_GROUP = "gseapps.commands"
+MAKE_ICONS_GROUP = "gseapps.make_icons"
 
 
 def make_parser() -> ArgumentParser:
@@ -14,6 +15,7 @@ def make_parser() -> ArgumentParser:
     parser = ArgumentParser("gseapps")
     parser.add_argument("-v", "--version", action="version", version=f"gseapps {version('gseapps')}")
     parser.add_argument("-t", "--test", action="store_true", help="runs the test suite")
+    parser.add_argument("-m", "--make-icons", action="store_true", help="creates desktop shortcuts for all apps in a 'GSE Apps' folder")
 
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("list", help="lists available commands")
@@ -31,6 +33,21 @@ def _print_rows(rows: list[tuple[str, str]]) -> None:
     width = max(len(name) for name, _ in rows)
     for name, description in rows:
         print(f"  {name:<{width}}  {description}")
+
+
+def cmd_make() -> int:
+    """Creates desktop shortcuts for all installed apps in a 'GSE Apps' folder."""
+    makers = {ep.name: ep for ep in entry_points(group=MAKE_ICONS_GROUP)}
+    if not makers:
+        print("No apps with shortcut support installed.")
+        return 0
+
+    print(f"GSE Apps {version('gseapps')}\n")
+    for name, ep in sorted(makers.items()):
+        ep.load()(folder="GSE Apps")
+        print(f"Created shortcut: {name}")
+
+    return 0
 
 
 def cmd_list() -> int:

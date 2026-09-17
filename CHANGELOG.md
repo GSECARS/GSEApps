@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2026-09-08
+## [0.0.1] - 2026-09-17
 
 ### Added
 - MIT license
@@ -17,3 +17,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub Actions to run pytest on push and pull requests to the main branch
 - README and contribution guide
 - Changelog file
+- `-m`/`--make-icons` flag to create desktop shortcuts for all installed apps in a `GSE Apps` folder via `gseapps.make_icons` entry points

@@ -2,10 +2,10 @@
 
 from importlib.metadata import version
 
-from gseapps.utils import cmd_list, make_parser
+from gseapps.utils import cmd_list, cmd_make, make_parser
 
 __version__ = version("gseapps")
-__all__ = ["__version__", "main"]
+__all__ = ["__version__", "main", "cmd_make"]
 
 
 def main() -> None:
@@ -13,6 +13,9 @@ def main() -> None:
 
     parser = make_parser()
     args = parser.parse_args()
+
+    if args.make_icons:
+        raise SystemExit(cmd_make())
 
     if args.test:
         import pytest
